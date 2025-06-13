@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import AuthModal from '../components/AuthModal';
@@ -6,6 +5,7 @@ import Navigation from '../components/Navigation';
 import TokenCard from '../components/TokenCard';
 import TradingView from '../components/TradingView';
 import WalletView from '../components/WalletView';
+import { Search, Filter, Menu, Home, BarChart } from 'lucide-react';
 
 const Index = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -13,6 +13,7 @@ const Index = () => {
   const [activeTab, setActiveTab] = useState('trenches');
   const [selectedToken, setSelectedToken] = useState<any>(null);
   const [showWallet, setShowWallet] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const mockTokens = [
     {
@@ -83,6 +84,11 @@ const Index = () => {
     setIsAuthModalOpen(true);
   };
 
+  const handleAuthSuccess = () => {
+    setIsLoggedIn(true);
+    setIsAuthModalOpen(false);
+  };
+
   const handleSwitchAuthMode = () => {
     setAuthMode(authMode === 'login' ? 'signup' : 'login');
   };
@@ -113,10 +119,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Header onSignUp={handleSignUp} onLogIn={handleLogIn} />
+      <Header 
+        onSignUp={handleSignUp} 
+        onLogIn={handleLogIn} 
+        onWalletClick={handleWalletClick}
+        isLoggedIn={isLoggedIn}
+      />
 
-      {/* Alert Banner */}
-      <div className="bg-yellow-900/30 border-l-4 border-yellow-500 p-4 text-sm">
+      {/* Alert Banners */}
+      <div className="bg-yellow-900/30 border-l-4 border-yellow-500 p-3 md:p-4 text-xs md:text-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-yellow-500">⚠️</span>
@@ -128,8 +139,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Secondary Alert */}
-      <div className="bg-yellow-900/20 border-l-4 border-yellow-500 p-3 text-xs">
+      <div className="bg-yellow-900/20 border-l-4 border-yellow-500 p-2 md:p-3 text-xs">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-yellow-500">⚠️</span>
@@ -144,61 +154,63 @@ const Index = () => {
       <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Trenches Controls */}
-      <div className="flex items-center justify-between p-4 border-b border-border">
-        <div className="flex items-center space-x-3">
-          <span className="text-primary">🎯 Trenches</span>
+      <div className="flex items-center justify-between p-3 md:p-4 border-b border-border">
+        <div className="flex items-center space-x-2 md:space-x-3">
+          <span className="text-primary text-sm md:text-base">🎯 Trenches</span>
           <button className="text-muted-foreground hover:text-foreground">▼</button>
         </div>
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
-              <span className="text-xs">☰</span>
+        <div className="flex items-center space-x-2 md:space-x-4">
+          <div className="flex items-center space-x-1 md:space-x-2">
+            <button className="w-6 h-6 md:w-8 md:h-8 bg-muted rounded flex items-center justify-center hover:bg-muted/80 transition-colors">
+              <Menu className="w-3 h-3 md:w-4 md:h-4" />
             </button>
-            <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
-              <span className="text-xs">🏠</span>
+            <button className="w-6 h-6 md:w-8 md:h-8 bg-muted rounded flex items-center justify-center hover:bg-muted/80 transition-colors">
+              <Home className="w-3 h-3 md:w-4 md:h-4" />
             </button>
-            <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
-              <span className="text-xs">📊</span>
-            </button>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="text-primary">⚡ 0</span>
-            <button onClick={handleWalletClick} className="text-muted-foreground hover:text-foreground">
-              P1 ▼
-            </button>
-            <button className="w-8 h-8 bg-muted rounded-full flex items-center justify-center">
-              <span className="text-xs">⚙️</span>
+            <button className="w-6 h-6 md:w-8 md:h-8 bg-muted rounded flex items-center justify-center hover:bg-muted/80 transition-colors">
+              <BarChart className="w-3 h-3 md:w-4 md:h-4" />
             </button>
           </div>
+          {isLoggedIn && (
+            <div className="flex items-center space-x-2">
+              <span className="text-primary text-xs md:text-sm">⚡ 0</span>
+              <button onClick={handleWalletClick} className="text-muted-foreground hover:text-foreground text-xs md:text-sm">
+                P1 ▼
+              </button>
+              <button className="w-6 h-6 md:w-8 md:h-8 bg-muted rounded-full flex items-center justify-center hover:bg-muted/80 transition-colors">
+                <span className="text-xs">⚙️</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
       {/* New Creations Filter */}
-      <div className="flex items-center justify-between p-4 bg-card/50">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 md:p-4 bg-card/50 space-y-2 sm:space-y-0">
         <div className="flex items-center space-x-2">
-          <span className="text-primary">🌟 New Creations</span>
+          <span className="text-primary text-sm md:text-base">🌟 New Creations</span>
           <button className="text-muted-foreground hover:text-foreground">▼</button>
         </div>
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2 bg-muted rounded-lg px-3 py-1">
-            <span className="text-muted-foreground">🔍</span>
+        <div className="flex items-center space-x-2 md:space-x-4">
+          <div className="flex items-center space-x-2 bg-muted rounded-lg px-2 md:px-3 py-1 flex-1 sm:flex-initial">
+            <Search className="w-3 h-3 md:w-4 md:h-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search"
-              className="bg-transparent text-sm text-foreground placeholder-muted-foreground outline-none"
+              className="bg-transparent text-xs md:text-sm text-foreground placeholder-muted-foreground outline-none flex-1 sm:w-auto"
             />
           </div>
           <button className="flex items-center space-x-1 text-muted-foreground hover:text-foreground">
-            <span>📊</span>
-            <span className="text-sm">Filter</span>
+            <Filter className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="text-xs md:text-sm">Filter</span>
           </button>
         </div>
       </div>
 
       {/* Token List */}
-      <div className="p-4 space-y-4">
+      <div className="p-3 md:p-4 space-y-3 md:space-y-4 pb-20 md:pb-4">
         {mockTokens.map((token, index) => (
-          <div key={index} onClick={() => handleTokenClick(token)}>
+          <div key={index} onClick={() => handleTokenClick(token)} className="cursor-pointer">
             <TokenCard {...token} />
           </div>
         ))}
@@ -209,6 +221,7 @@ const Index = () => {
         onClose={() => setIsAuthModalOpen(false)}
         mode={authMode}
         onSwitchMode={handleSwitchAuthMode}
+        onSuccess={handleAuthSuccess}
       />
     </div>
   );
