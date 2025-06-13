@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
   ];
 
   return (
-    <nav className="flex items-center space-x-3 md:space-x-6 px-3 md:px-4 py-2 md:py-3 border-b border-border overflow-x-auto scrollbar-hide">
+    <nav className="flex items-center space-x-3 md:space-x-6 px-3 md:px-4 py-2 md:py-3 border-b border-border overflow-x-auto scrollbar-hide md:hidden">
       {tabs.map((tab) => (
         <button
           key={tab.id}
