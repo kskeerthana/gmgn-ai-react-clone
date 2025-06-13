@@ -127,108 +127,105 @@ const Index = () => {
         isLoggedIn={isLoggedIn}
       />
 
+      {/* Mobile Navigation - Always visible */}
       <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-      {isLoggedIn && (
-        <>
-          {/* Desktop Controls Row */}
-          <div className="hidden md:flex items-center justify-between p-4 border-b border-border">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <span className="text-primary text-base">🎯 Trenches</span>
-                <button className="text-muted-foreground hover:text-foreground">▼</button>
-              </div>
-              <div className="flex items-center space-x-2">
-                <button className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm">
-                  <span>Customize</span>
-                </button>
-                <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
-                  <span>💎 Devs</span>
-                </button>
-                <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
-                  <Filter className="w-4 h-4" />
-                  <span>Filter</span>
-                </button>
-                <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
-                  <BarChart3 className="w-4 h-4" />
-                  <span>1</span>
-                </button>
-                <button className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm">
-                  <span>⚡ Buy</span>
-                </button>
-                <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
-                  <span>≡ 0</span>
-                </button>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-sm">P1</span>
-              <span className="text-sm">P2</span>
-              <span className="text-sm">P3</span>
-              <Settings className="w-4 h-4 text-muted-foreground" />
-            </div>
+      {/* Desktop Controls Row - Always visible */}
+      <div className="hidden md:flex items-center justify-between p-4 border-b border-border">
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            <span className="text-primary text-base">🎯 Trenches</span>
+            <button className="text-muted-foreground hover:text-foreground">▼</button>
           </div>
-
-          {/* Mobile Controls */}
-          <div className="md:hidden">
-            <div className="flex items-center justify-between p-3 border-b border-border">
-              <div className="flex items-center space-x-2">
-                <span className="text-primary text-sm">🎯 Trenches</span>
-                <button className="text-muted-foreground hover:text-foreground">▼</button>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center space-x-1">
-                  <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
-                    <Menu className="w-4 h-4" />
-                  </button>
-                  <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
-                    <span className="text-xs">💎</span>
-                  </button>
-                  <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
-                    <Filter className="w-4 h-4" />
-                  </button>
-                </div>
-                <div className="flex items-center space-x-2 bg-card border border-border rounded-lg px-2 py-1">
-                  <BarChart3 className="w-3 h-3 text-primary" />
-                  <span className="text-xs text-foreground">1</span>
-                </div>
-                <button className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-xs">
-                  <span>⚡</span>
-                </button>
-                <div className="flex items-center space-x-1 bg-muted px-2 py-1 rounded-lg">
-                  <span className="text-xs">≡ 0</span>
-                </div>
-                <span className="text-xs">P1 ▼</span>
-                <Settings className="w-4 h-4 text-muted-foreground" />
-              </div>
-            </div>
+          <div className="flex items-center space-x-2">
+            <button className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm">
+              <span>Customize</span>
+            </button>
+            <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
+              <span>💎 Devs</span>
+            </button>
+            <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
+              <Filter className="w-4 h-4" />
+              <span>Filter</span>
+            </button>
+            <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
+              <BarChart3 className="w-4 h-4" />
+              <span>1</span>
+            </button>
+            <button className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-sm">
+              <span>⚡ Buy</span>
+            </button>
+            <button className="flex items-center space-x-1 bg-muted px-3 py-1.5 rounded-lg text-sm">
+              <span>≡ 0</span>
+            </button>
           </div>
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm">P1</span>
+          <span className="text-sm">P2</span>
+          <span className="text-sm">P3</span>
+          <Settings className="w-4 h-4 text-muted-foreground" />
+        </div>
+      </div>
 
-          {/* New Creations Filter */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 md:p-4 bg-card/30 space-y-2 sm:space-y-0">
-            <div className="flex items-center space-x-2">
-              <span className="text-primary text-sm md:text-base">🌟 New Creations</span>
-              <button className="text-muted-foreground hover:text-foreground">▼</button>
-            </div>
-            <div className="flex items-center space-x-2 md:space-x-4">
-              <div className="flex items-center space-x-2 bg-input rounded-lg px-3 py-2 flex-1 sm:flex-initial">
-                <Search className="w-3 h-3 md:w-4 md:h-4 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="bg-transparent text-xs md:text-sm text-foreground placeholder-muted-foreground outline-none flex-1 sm:w-auto"
-                />
-              </div>
-              <button className="flex items-center space-x-1 text-muted-foreground hover:text-foreground">
-                <Filter className="w-3 h-3 md:w-4 md:h-4" />
-                <span className="text-xs md:text-sm">Filter</span>
+      {/* Mobile Controls - Always visible */}
+      <div className="md:hidden">
+        <div className="flex items-center justify-between p-3 border-b border-border">
+          <div className="flex items-center space-x-2">
+            <span className="text-primary text-sm">🎯 Trenches</span>
+            <button className="text-muted-foreground hover:text-foreground">▼</button>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
+              <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
+                <Menu className="w-4 h-4" />
+              </button>
+              <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
+                <span className="text-xs">💎</span>
+              </button>
+              <button className="w-8 h-8 bg-muted rounded flex items-center justify-center">
+                <Filter className="w-4 h-4" />
               </button>
             </div>
+            <div className="flex items-center space-x-2 bg-card border border-border rounded-lg px-2 py-1">
+              <BarChart3 className="w-3 h-3 text-primary" />
+              <span className="text-xs text-foreground">1</span>
+            </div>
+            <button className="flex items-center space-x-1 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-xs">
+              <span>⚡</span>
+            </button>
+            <div className="flex items-center space-x-1 bg-muted px-2 py-1 rounded-lg">
+              <span className="text-xs">≡ 0</span>
+            </div>
+            <span className="text-xs">P1 ▼</span>
+            <Settings className="w-4 h-4 text-muted-foreground" />
           </div>
-        </>
-      )}
+        </div>
+      </div>
 
-      {/* Token List */}
+      {/* New Creations Filter - Always visible */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 md:p-4 bg-card/30 space-y-2 sm:space-y-0">
+        <div className="flex items-center space-x-2">
+          <span className="text-primary text-sm md:text-base">🌟 New Creations</span>
+          <button className="text-muted-foreground hover:text-foreground">▼</button>
+        </div>
+        <div className="flex items-center space-x-2 md:space-x-4">
+          <div className="flex items-center space-x-2 bg-input rounded-lg px-3 py-2 flex-1 sm:flex-initial">
+            <Search className="w-3 h-3 md:w-4 md:h-4 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="bg-transparent text-xs md:text-sm text-foreground placeholder-muted-foreground outline-none flex-1 sm:w-auto"
+            />
+          </div>
+          <button className="flex items-center space-x-1 text-muted-foreground hover:text-foreground">
+            <Filter className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="text-xs md:text-sm">Filter</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Token List - Always visible */}
       <div className="p-3 md:p-4 space-y-3 md:space-y-4 pb-20 md:pb-4">
         {mockTokens.map((token, index) => (
           <div key={index} onClick={() => handleTokenClick(token)} className="cursor-pointer">

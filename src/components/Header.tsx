@@ -20,17 +20,16 @@ const Header: React.FC<HeaderProps> = ({ onSignUp, onLogIn, onWalletClick, isLog
           <span className="text-primary font-semibold text-sm md:text-base">GMGN</span>
         </div>
         
-        {isLoggedIn && (
-          <div className="hidden md:flex items-center space-x-4 ml-8">
-            <button className="text-foreground hover:text-primary text-sm">Trenches</button>
-            <button className="text-muted-foreground hover:text-foreground text-sm">New pair</button>
-            <button className="text-muted-foreground hover:text-foreground text-sm">Trending</button>
-            <button className="text-muted-foreground hover:text-foreground text-sm">CopyTrade</button>
-            <button className="text-muted-foreground hover:text-foreground text-sm">Monitor</button>
-            <button className="text-muted-foreground hover:text-foreground text-sm">Follow</button>
-            <button className="text-muted-foreground hover:text-foreground text-sm">Holding</button>
-          </div>
-        )}
+        {/* Desktop Navigation - Always visible */}
+        <div className="hidden md:flex items-center space-x-4 ml-8">
+          <button className="text-foreground hover:text-primary text-sm">Trenches</button>
+          <button className="text-muted-foreground hover:text-foreground text-sm">New pair</button>
+          <button className="text-muted-foreground hover:text-foreground text-sm">Trending</button>
+          <button className="text-muted-foreground hover:text-foreground text-sm">CopyTrade</button>
+          <button className="text-muted-foreground hover:text-foreground text-sm">Monitor</button>
+          <button className="text-muted-foreground hover:text-foreground text-sm">Follow</button>
+          <button className="text-muted-foreground hover:text-foreground text-sm">Holding</button>
+        </div>
       </div>
       
       <div className="flex items-center space-x-2 md:space-x-3">
