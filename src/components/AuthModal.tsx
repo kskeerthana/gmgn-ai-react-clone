@@ -7,9 +7,10 @@ interface AuthModalProps {
   onClose: () => void;
   mode: 'login' | 'signup';
   onSwitchMode: () => void;
+  onSuccess: () => void;
 }
 
-const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onSwitchMode }) => {
+const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onSwitchMode, onSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [inviteCode, setInviteCode] = useState('');
@@ -18,8 +19,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onSwitchMo
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Auth attempt:', { mode, email, password, inviteCode });
-    // Handle authentication logic here
+    console.log('Demo auth attempt:', { mode, email, password, inviteCode });
+    // Demo authentication - always successful
+    onSuccess();
   };
 
   return (
@@ -56,7 +58,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onSwitchMo
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter Email"
+              placeholder="demo@example.com"
               className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               required
             />
@@ -71,7 +73,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onSwitchMo
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Password"
+                placeholder="demo123"
                 className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 required
               />
@@ -111,7 +113,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode, onSwitchMo
             type="submit"
             className="w-full py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
           >
-            {mode === 'login' ? 'Log In' : 'Sign Up'}
+            {mode === 'login' ? 'Demo Log In' : 'Demo Sign Up'}
           </button>
         </form>
 
